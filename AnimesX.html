@@ -1,1 +1,107 @@
-.
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimesX</title>
+    <style>
+        body {
+            background-color: #202124;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1976D2;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        main {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            background-color: #1976D2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+        }
+
+        #videoList {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AnimesX</h1>
+    </header>
+
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <main>
+        <h2>Sobre Mim</h2>
+        <p>Este é o meu primeiro site criado com HTML. Estou aprendendo a desenvolver sites e estou animado para ver onde isso me levará!</p>
+        <input type="file" id="videoInput" accept="video/*" multiple style="display:none">
+        <button onclick="document.getElementById('videoInput').click()">Adicionar Vídeos</button>
+
+        <div id="videoList"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AnimesX</p>
+    </footer>
+
+    <script>
+        const videoInput = document.getElementById('videoInput');
+        const videoList = document.getElementById('videoList');
+
+        videoInput.addEventListener('change', function() {
+            videoList.innerHTML = ''; // Limpa a lista de vídeos
+            for (let i = 0; i < videoInput.files.length; i++) {
+                const file = videoInput.files[i];
+                const videoUrl = URL.createObjectURL(file);
+
+                const videoElement = document.createElement('video');
+                videoElement.src = videoUrl;
+                videoElement.controls = true;
+                videoElement.width = 300;
+                videoElement.style.margin = "10px";
+
+                videoList.appendChild(videoElement);
+            }
+        });
+    </script>
+
+</body>
+</html>
